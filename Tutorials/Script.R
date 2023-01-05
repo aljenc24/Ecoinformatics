@@ -1,11 +1,15 @@
 #This was my first script produced with Professor Wood, to try to better comprehend various distributions. In this script, a normal, log normal, poisson, and binomial distribution were produced. 
 
 #par
-par(mfrow=c(2,2))
-curve(dnorm(x,0,1),xlim=c(-3,3))
-curve(dlnorm(x,meanlog=0,sdlog=1), xlim=c(0,5))
-plot(y=dpois(0:16,lambda=6),x=0:16,type="p")
-plot(y=dbinom(0:5,size=5,prob=0.15),x=0:5)
+par(mfrow=c(2,2), font=4)
+curve(dnorm(x,0,1),xlim=c(-3,3), 
+      main="Normal Distribution", xlab="x", ylab="Frequency")
+curve(dlnorm(x,meanlog=0,sdlog=1), xlim=c(0,5),
+      main="Log Normal Distribution", xlab="x", ylab="Frequency")
+plot(y=dpois(0:16,lambda=6),x=0:16,type="p",
+     main="Poisson Distribution", xlab="x", ylab="Frequency")
+plot(y=dbinom(0:5,size=5,prob=0.15),x=0:5,
+     main="Binomial Distribution", xlab="x", ylab="Frequency")
 
 #split.screen
 # split.screen(curve(dnorm(x,0,1),xlim=c(-3,3)))
