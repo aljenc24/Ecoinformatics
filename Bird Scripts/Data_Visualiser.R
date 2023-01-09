@@ -22,6 +22,9 @@ biomass<-read.csv("./Raw Bird Data/SampleBiomass.csv")
 hist(biomass$Total.mass,main="Biomass",ylab = "Frequency",breaks=50,xlab="Total Mass",xlim=c(0,5))
 #DISCOVERY--> Delete anything w/ negative note, handle negative mass values, recalculate ALL total mass
 
+par(mfrow=c(1,1), bg="white",col.axis="black",col.lab="black",col.main="black",col.sub="black")
+hist(newbiomass$Total.mass,main="Biomass",ylab = "Frequency",breaks=50,xlab="Total Mass",xlim=c(0,5))
+
 #Body Size Histograms
 bodysize<-read.csv("./Raw Bird Data/SampleBodySize.csv")
 hist(bodysize$Size.Class..5mm/bodysize$Total.Number, xlim=c(0,1),breaks=100, main="Proportion of Invertebrates under 5mm",xlab="Proportion of Invertebrates (<5mm)")

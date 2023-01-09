@@ -32,6 +32,7 @@ write.csv(newabundance,"./Cleaned Bird Data/cleanedabundance.csv")
 # >>> BIOMASS CLEANING <<<
 
 #Getting rid of Negative Masses
+source("./Bird Scripts/Data_Visualiser.R")
 View(biomass)
 biomass$Amphi.mass[biomass$Amphi.mass<0]<-0
 biomass$Spider.mass[biomass$Spider.mass<0]<-0
@@ -48,9 +49,15 @@ newbiomass<-biomass[!biomass$Notes%in%delete,]
 nrow(biomass)
 nrow(newbiomass)
 
+#Creating New Total Column and Overriding original, incorrect data column
+newbiomass$Total.mass <-newbiomass$Amphi.mass+newbiomass$Spider.mass+newbiomass$Hemi.mass+newbiomass$Snail.mass+newbiomass$Other.mass
+
+
+#Creating New Cleaned Biomass Data Set
 write.csv(newbiomass,"./Cleaned Bird Data/cleanedbiomass.csv")
 
-# --> How do I check that the total mass column is accurate?
+#Creating New Dataset to visually test if data has been corrected
+hist(newbiomass$Total.mass,main="Biomass",ylab = "Frequency",breaks=50,xlab="Total Mass",xlim=c(0,3.5))
 
 # >>> BODYSIZE CLEANING <<<
 View(bodysize)
