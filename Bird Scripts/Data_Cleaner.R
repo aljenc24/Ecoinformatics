@@ -62,4 +62,26 @@ hist(newbiomass$Total.mass,main="Biomass",ylab = "Frequency",breaks=50,xlab="Tot
 # >>> BODYSIZE CLEANING <<<
 View(bodysize)
 unique(bodysize$Notes)
-#determine which samples to delete
+bodysize.notes<-unique(bodysize$Notes)
+bodydelete<-bodysize.notes[c(7)]
+!bodysize$Notes%in%bodydelete
+newbodysize<-bodysize[!bodysize$Notes%in%bodydelete,]
+nrow(bodysize)
+nrow(newbodysize)
+
+#Correcting errors found by Zach
+unique(bodysize$EXCLUDE)
+bodysize.exclude<-unique(bodysize$Notes)
+body.exclude.delete<-bodysize.exclude[c(2,3,4)]
+!bodysize$EXCLUDE%in%body.exclude.delete
+newbodysize<-bodysize[!bodysize$EXCLUDE%in%body.exclude.delete,]
+nrow(bodysize)
+nrow(newbodysize)
+
+#>>> I want to correct the errors you outlines in the EXCLUDE column but 
+#>it wont let me delete the rows you created using the unique function. 
+#>It just comes up with no false values. What do I need to change or specify 
+#>for the computer to understand my command
+
+#Creating New Cleaned Body Size Data Set
+write.csv(newbodysize,"./Cleaned Bird Data/cleanedbodysize.csv")
