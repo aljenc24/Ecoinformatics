@@ -28,22 +28,41 @@ boxplot(Total~Site, data = treatment_samples)
 #     suggesting I make but it keeps coming back with the response 
 #     -- Error in plot.new() : figure margins too large
 
+### [Zach] This figure you're trying to make will be too big for poor R studio to
+###  show in it's little window. Let's make it as an external .png for now and look at it there.
+###  I made a folder called 'Rough Figures' where I'll store the graph.
 
-par(mfrow=c(13,1))
-x.scale = range(control_samples$Total) #<-----What should I put here so that it will properly reflect the max and min values of the order abundances not the total
-boxplot(Total~Orthoptera, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Hemiptera, data = control_samples, xlim=x.scale,  xlab="")
-boxplot(Total~Lepidoptera, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Diptera, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Hymenoptera, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Coleoptera, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Thysanoptera, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Amphipoda, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Snail, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Isopoda, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Spider, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Pseudoscorpionida, data = control_samples, xlim=x.scale, xlab="")
-boxplot(Total~Unknown, data = control_samples,xlim=x.scale,xlab="")
+png(height=10,width=7.5,pointsize=8,units="in",res=900,file="./Rough Figures/abun_taxa.png")
+### [Zach] the above line starts creating the png image. any graphics code that follows
+###  will affect that image file and NOT show up in your graphics window.
+###  At the end of the graphics code, we use the 'dev.off()' function to finish creating
+###  the png image, finalize it, and close it
+
+par(mfrow=c(13,1),mar=c(0,0,0.5,0),oma=c(4.5,4.5,0,0.5))
+
+x.scale <- range(control_samples[,c("Orthoptera","Hemiptera","Lepidoptera","Diptera",
+                                    "Hymenoptera","Coleoptera","Thysanoptera","Amphipoda",
+                                    "Snail","Isopoda","Spider","Pseudoscorpionida")])
+### [Zach] added x.scale method above, having 'range' select all individual count columns
+
+hist(control_samples$Orthoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Hemiptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+### [Zach] now keep adding your histograms for the other taxa
+
+### [Zach] on your bottom panel, remove the 'xaxt="n"' argument
+
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
 
 par(mfrow=c(13,1))
 x.scale = range(treatment_samples$Total) #<-----What should I put here so that it will properly reflect the max and min values of the order abundances not the total
@@ -60,6 +79,8 @@ boxplot(Total~Isopoda, data = treatment_samples, xlim=x.scale, xlab="")
 boxplot(Total~Spider, data = treatment_samples, xlim=x.scale, xlab="")
 boxplot(Total~Pseudoscorpionida, data = treatment_samples, xlim=x.scale, xlab="")
 boxplot(Total~Unknown, data = treatment_samples,xlim=x.scale,xlab="")
+
+
 
 #---------------------------------------------------------------------------------------------
 
