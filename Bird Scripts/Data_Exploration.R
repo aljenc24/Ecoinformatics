@@ -39,7 +39,6 @@ png(height=10,width=7.5,pointsize=8,units="in",res=900,file="./Rough Figures/abu
 ###  the png image, finalize it, and close it
 
 par(mfrow=c(13,1),mar=c(0,0,0.5,0),oma=c(4.5,4.5,0,0.5))
-
 x.scale <- range(control_samples[,c("Orthoptera","Hemiptera","Lepidoptera","Diptera",
                                     "Hymenoptera","Coleoptera","Thysanoptera","Amphipoda",
                                     "Snail","Isopoda","Spider","Pseudoscorpionida")])
@@ -47,40 +46,47 @@ x.scale <- range(control_samples[,c("Orthoptera","Hemiptera","Lepidoptera","Dipt
 
 hist(control_samples$Orthoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
 hist(control_samples$Hemiptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Lepidoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Diptera,xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Hymenoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Coleoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Thysanoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Amphipoda, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Snail,xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Isopoda, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Spider, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Pseudoscorpionida, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(control_samples$Unknown, xlim=x.scale, xlab="Treatment Type",main="",ylab="",yaxt="n")
+mtext(outer=T,"Abundance",side=2)
 ### [Zach] now keep adding your histograms for the other taxa
-
 ### [Zach] on your bottom panel, remove the 'xaxt="n"' argument
 
 dev.off()
 
+# !!!Notes for Graphics produced... Outlier points must be addressed to fix the x-axis spread
 
+# --> follow the same steps for Treatment...
 
-
-
-
-
-
-
-
-
-
-par(mfrow=c(13,1))
-x.scale = range(treatment_samples$Total) #<-----What should I put here so that it will properly reflect the max and min values of the order abundances not the total
-boxplot(Total~Orthoptera, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Hemiptera, data = treatment_samples, xlim=x.scale,  xlab="")
-boxplot(Total~Lepidoptera, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Diptera, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Hymenoptera, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Coleoptera, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Thysanoptera, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Amphipoda, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Snail, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Isopoda, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Spider, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Pseudoscorpionida, data = treatment_samples, xlim=x.scale, xlab="")
-boxplot(Total~Unknown, data = treatment_samples,xlim=x.scale,xlab="")
-
-
+png(height=10,width=7.5,pointsize=8,units="in",res=900,file="./Rough Figures/abun_taxa_treatment.png")
+par(mfrow=c(13,1),mar=c(0,0,0.5,0),oma=c(4.5,4.5,0,0.5))
+x.scale <- range(treatment_samples[,c("Orthoptera","Hemiptera","Lepidoptera","Diptera",
+                                    "Hymenoptera","Coleoptera","Thysanoptera","Amphipoda",
+                                    "Snail","Isopoda","Spider","Pseudoscorpionida")])
+hist(treatment_samples$Orthoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Hemiptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Lepidoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Diptera,xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Hymenoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Coleoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Thysanoptera, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Amphipoda, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Snail,xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Isopoda, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Spider, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Pseudoscorpionida, xlim=x.scale, xlab="",main="",ylab="",yaxt="n",xaxt="n")
+hist(treatment_samples$Unknown, xlim=x.scale, xlab="Treatment Type",main="",ylab="",yaxt="n")
+mtext(outer=T,"Abundance",side=2)
+dev.off()
 
 #---------------------------------------------------------------------------------------------
 
