@@ -126,7 +126,7 @@ dev.off()
 # --> Solar Days and the Period
 boxplot(Total~Period, data = control_samples, ylim = c(0,600))
 time.range = range(newabundance$SolarDay)
-par(mfrow=c(1,2))
+par(mfrow=c(1,2), mar=c(4.5,4.5,0.5,0.5))
 plot(Total~SolarDay, data = control_samples, col="black", ylim=c(0,600), xlim=time.range)
 plot(Total~SolarDay, data = treatment_samples, col="black", ylim=c(0,800),xlim=time.range)
 
@@ -162,19 +162,35 @@ boxplot(Total.mass~EC, data = treatment_mass_samples,  ylim=c(0,1),yaxt="n", mai
 
 #- biomass —> cubed root & normal distribution, use GLM but don't put family
 
+png(height=10,width=7.5,pointsize=8,units="in",res=900,file="./Rough Figures/biomass_taxa_control.png")
+par(mfrow=c(5,1),mar=c(0,0,0.5,0),oma=c(4.5,4.5,0,0.5))
+x.scale <- c(0,2)
+breaknum=0:100000*0.05
+hist(nthroot(control_mass_samples$Amphi.mass, n=3), xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+title(line=-1, "Amphibian Biomass")
+hist(nthroot(control_mass_samples$Spider.mass, n=3), xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+title(line=-1, "Spider Biomass")
+hist(nthroot(control_mass_samples$Hemi.mass, n=3), xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+title(line=-1, "Hemiptera Biomass")
+hist(nthroot(control_mass_samples$Snail.mass, n=3),xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+title(line=-1, "Snail Biomass")
+hist(nthroot(control_mass_samples$Other.mass, n=3), xlim=x.scale, xlab="",main="",ylab="", breaks=breaknum)
+title(line=-1, "Other Biomass")
+dev.off()
+
 png(height=10,width=7.5,pointsize=8,units="in",res=900,file="./Rough Figures/biomass_taxa_treatment.png")
 par(mfrow=c(5,1),mar=c(0,0,0.5,0),oma=c(4.5,4.5,0,0.5))
 x.scale <- c(0,2)
-breaknum=10
-hist(control_mass_samples$Amphi.mass, xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+breaknum=0:100000*0.05
+hist(nthroot(treatment_mass_samples$Amphi.mass, n=3), xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
 title(line=-1, "Amphibian Biomass")
-hist(control_mass_samples$Spider.mass, xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+hist(nthroot(treatment_mass_samples$Spider.mass, n=3), xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
 title(line=-1, "Spider Biomass")
-hist(control_mass_samples$Hemi.mass, xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+hist(nthroot(treatment_mass_samples$Hemi.mass, n=3), xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
 title(line=-1, "Hemiptera Biomass")
-hist(control_mass_samples$Snail.mass,xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
+hist(nthroot(treatment_mass_samples$Snail.mass, n=3),xlim=x.scale, xlab="",main="",ylab="",xaxt="n", breaks=breaknum)
 title(line=-1, "Snail Biomass")
-hist(control_mass_samples$Other.mass, xlim=x.scale, xlab="",main="",ylab="", breaks=breaknum)
+hist(nthroot(treatment_mass_samples$Other.mass, n=3), xlim=x.scale, xlab="",main="",ylab="", breaks=breaknum)
 title(line=-1, "Other Biomass")
 dev.off()
 

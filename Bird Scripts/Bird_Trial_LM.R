@@ -21,38 +21,34 @@ Anova(model.2) #Chisqr=223630 & p-value<2.2e-16
 
 # --> new abundance --> Linear Regression for the Effect of ORDER ON ABUNDANCE
 # a. Hemiptera
-control_samples$Hemiptera<-as.factor(control_samples$Hemiptera)
-model.H<-glm(Total~0+Hemiptera, data=control_samples, family=poisson())
+model.H<-glm(Total~Hemiptera, data=control_samples, family=poisson())
 summary(model.H)
-Anova(model.H) #Chisqr=325913 & p-value<2.2e-16
+Anova(model.H) #Chisqr=16645 & p-value<2.2e-16
 
 # b. Diptera
-control_samples$Diptera<-as.factor(control_samples$Diptera)
-model.D<-glm(Total~0+Diptera, data=control_samples, family=poisson())
+model.D<-glm(Total~Diptera, data=control_samples, family=poisson())
 summary(model.D)
-Anova(model.D) #Chisqr=344768 & p-value<2.2e-16
+Anova(model.D) #Chisqr=35500 & p-value<2.2e-16
 
 #  [Data Confusion area End]>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 # c. Amphipoda
-control_samples$Amphipoda<-as.factor(control_samples$Amphipoda)
-model.A<-glm(Total~0+Amphipoda, data=control_samples, family=poisson())
+model.A<-glm(Total~Amphipoda, data=control_samples, family=poisson())
 summary(model.A)
-Anova(model.A) #Chisqr=343695 & p-value<2.2e-16
+Anova(model.A) #Chisqr=34427 & p-value<2.2e-16
 
 # Spider
-control_samples$Spider<-as.factor(control_samples$Spider)
-model.S<-glm(Total~0+Spider, data=control_samples, family=poisson())
+model.S<-glm(Total~Spider, data=control_samples, family=poisson())
 summary(model.S)
-Anova(model.S) #Chisqr=348457 & p-value<2.2e-16
+Anova(model.S) #Chisqr=39188 & p-value<2.2e-16
 
-#glm(y~x*z)
+#glm(y~x*z) 
 
 # --> new abundance --> Looking at the effect of Solar day on Abundance
-newabundance$SolarDay<-as.factor(newabundance$SolarDay)
-model.Solar<-glm(Total~0+SolarDay, data=newabundance, family=poisson())
+model.Solar<-glm(Total~SolarDay, data=newabundance, family=poisson())
 summary(model.Solar)
 Anova(model.Solar) #Chisqr=578352 & p-value<2.2e-16
+plot
 
 # ???--> Looking more Specifically at the Effect of Solar day and specific orders?
 

@@ -1,5 +1,7 @@
 #This script is to explore and understand the Bird data. Looking at the abundance, size, and biomass data and their most fitting distributions
+
 site<-read.csv("./Raw Bird Data/SiteVariables.csv")
+par(mfrow=c(1,1))
 hist(site$Bird_Average)
 hist(log(site$Bird_Average))
 plot(x=site$Bird_Average,y=rnorm(nrow(site),0,0.1),ylim=c(-1,1), main = "Bird Average",ylab = "Variable",xlab="Average Bird Sitings Per Site")
