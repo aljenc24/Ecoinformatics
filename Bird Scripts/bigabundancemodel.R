@@ -1,5 +1,6 @@
 require(car)
 require(multcomp)
+require(corrplot)
 
 cleanedabundance<-read.csv("./Cleaned Bird Data/cleanedabundance.csv")
 
@@ -184,8 +185,6 @@ title(line=-3, "Sachuest")
 
 dev.off()
 
-
-
 ## TRIAL>>> Abundance~Taxa for Asparagus site... 
 par(mfrow=c(1,2))
 
@@ -204,6 +203,3 @@ plot(Hemiptera~SolarDay, data=Asp.Abun, xlab="Solar Day", ylab="Orthoptera Abund
 curve(exp(coef.hemi["(Intercept)"]+coef.hemi["SolarDay"]*x+coef.hemi["SqSolarDay"]*x^2), add = T, col="red")
 
 #       ...
-
-
-
