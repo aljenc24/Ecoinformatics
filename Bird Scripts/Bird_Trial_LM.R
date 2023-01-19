@@ -1,5 +1,8 @@
 #-------------------------------ABUNDANCE LINEAR MODELING--------------------------------------------------------------
 
+require(multcomp)
+require(corrplot)
+
 # --> new abundance --> Linear Regression for the Effect of SITE ON ABUNDANCE
 ### [Zach] For funzies... (x independence assumption violated)
 
