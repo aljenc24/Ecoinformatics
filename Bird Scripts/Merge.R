@@ -9,7 +9,7 @@ source("./Bird Scripts/Atomization.R")
 colnames(cleanedbiomass)[colnames(cleanedbiomass)=="EC"]<-"Treatment"
 
 #To identify variation in column titles and change all columns to new title
-# wrongnames<- c("EC", "Treatment", "sbif", "sjedgflqigrdw")
+wrongnames<- c("EC", "Treatment", "sbif", "sjedgflqigrdw")
 colnames(cleanedbiomass)[colnames(cleanedbiomass)%in%wrongnames]<-"Treatment"
 colnames(cleanedabundance)[colnames(cleanedabundance)=="Ex.Cont.Number"]<-"Number"
 
@@ -97,7 +97,7 @@ Anova(spider.bio.abun.model)
 #  ~ Significant Relationships between these specied abundance and mass
 
 Orth.bio.abun.model<-glm(num.Orthoptera~0+nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
-summary(bio.abun.model)
+summary(Orth.bio.abun.model)
 
 Bio.Abun.Table<-cor(x=merged.abun.bio[,c("Amphi.mass","Hemi.mass","Spider.mass","Snail.mass","num.Orthoptera","num.Hemiptera","num.Lepidoptera", "num.Diptera", "num.Hymenoptera", "num.Coleoptera", "num.Thysanoptera", "num.Amphipoda", "num.Snail", "num.Isopoda", "num.Spider", "num.Pseudoscorpionida")], method="spearman")
 write.csv(Bio.Abun.Table, file="./Cleaned Bird Data/BiomassAbundanceCorrTable.csv")
