@@ -78,6 +78,11 @@ merged.abun.bio<-merged.abun.bio[,!colnames(merged.abun.bio)=="Period.y"]
 
 #Homework --> are abundance and biomass related? does more bugs mean more mass? glm (abundance=y, cubed root mass=x, poisson glm) --> correlation (spearman)
 
+bio.abun.model<-glm(Total~nthroot(Total.mass, n=3), data=merged.abun.bio, family=poisson())
+summary(bio.abun.model) # Significant Relationship
+
+# Effect of mass on abundance for amphipoda, spiders, snails, and hemiptera
+
 amphi.bio.abun.model<-glm(num.Amphipoda~nthroot(Amphi.mass,n=3), data=merged.abun.bio, family=poisson())
 summary(amphi.bio.abun.model)
 Anova(amphi.bio.abun.model)
@@ -94,10 +99,33 @@ spider.bio.abun.model<-glm(num.Spider~nthroot(Spider.mass,n=3), data=merged.abun
 summary(spider.bio.abun.model)
 Anova(spider.bio.abun.model)
 
-#  ~ Significant Relationships between these specied abundance and mass
+#  ~ Significant Relationships between these species abundance and mass
 
-Orth.bio.abun.model<-glm(num.Orthoptera~0+nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
-summary(Orth.bio.abun.model)
+Orth.bio.abun.model<-glm(num.Orthoptera~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Orth.bio.abun.model) # Significant
+Hemi.bio.abun.model<-glm(num.Hemiptera~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Hemi.bio.abun.model) # Significant
+Lepi.bio.abun.model<-glm(num.Lepidoptera~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Lepi.bio.abun.model) # Insignificant effect
+Dipt.bio.abun.model<-glm(num.Diptera~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Dipt.bio.abun.model) # significant and insignificant
+Hyme.bio.abun.model<-glm(num.Hymenoptera~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Hyme.bio.abun.model) # significant and insignificant
+Cole.bio.abun.model<-glm(num.Coleoptera~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Cole.bio.abun.model) # Significant
+Thys.bio.abun.model<-glm(num.Thysanoptera~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Thys.bio.abun.model) # significant and insignificant
+Amph.bio.abun.model<-glm(num.Amphipoda~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Amph.bio.abun.model) # significant
+Snai.bio.abun.model<-glm(num.Snail~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Snai.bio.abun.model) # significant
+Isop.bio.abun.model<-glm(num.Isopoda~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Isop.bio.abun.model) # significant and insignificant
+Spid.bio.abun.model<-glm(num.Spider~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Spid.bio.abun.model) # significant
+Pseu.bio.abun.model<-glm(num.Pseudoscorpionida~nthroot(Spider.mass,n=3)+nthroot(Snail.mass,n=3)+nthroot(Hemi.mass,n=3)+nthroot(Amphi.mass,n=3)+nthroot(Other.mass,n=3), data=merged.abun.bio, family=poisson())
+summary(Pseu.bio.abun.model) # significant and insignificant
+#make into function
 
 Bio.Abun.Table<-cor(x=merged.abun.bio[,c("Amphi.mass","Hemi.mass","Spider.mass","Snail.mass","num.Orthoptera","num.Hemiptera","num.Lepidoptera", "num.Diptera", "num.Hymenoptera", "num.Coleoptera", "num.Thysanoptera", "num.Amphipoda", "num.Snail", "num.Isopoda", "num.Spider", "num.Pseudoscorpionida")], method="spearman")
 write.csv(Bio.Abun.Table, file="./Cleaned Bird Data/BiomassAbundanceCorrTable.csv")
@@ -109,4 +137,15 @@ hist(Bio.Abun.Table[lower.tri(Bio.Abun.Table)])
     # Hemi mass & num --> 0.909
     # Snail mass & num --> 0.955
     # Spider mass & num --> 0.673
+
+##High correlation with top bug predator... spider
+
+# PCA
+
+ordered.merged.abun.bio<-apply(merged.abun.bio[,c("Amphi.mass","Hemi.mass","Spider.mass","Snail.mass","num.Orthoptera","num.Hemiptera","num.Lepidoptera", "num.Diptera", "num.Hymenoptera", "num.Coleoptera", "num.Thysanoptera", "num.Amphipoda", "num.Snail", "num.Isopoda", "num.Spider", "num.Pseudoscorpionida")], 2, rank)
+head(ordered.merged.abun.bio)
+mass.abun.pc<- prcomp(ordered.merged.abun.bio, center=T,scale=T)
+summary(mass.abun.pc)
+mass.abun.pc
+#PC 1 --> when there are lots of bugs there are lots of everything, PC 2--> when there are a lot of aquatic invertebrates there are little to no terrestrial invertebrates
 

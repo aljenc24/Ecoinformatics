@@ -15,5 +15,10 @@ delete.columns<- function(dataset,conames,checknames=T)
 
 test.abun<-delete.columns(cleanedabundance, c("X", "Notes"))
 
-
+# cuberoot = function(x){
+#   if(x < 0)
+#   { - (-x)^(1/3)}
+#   else
+#   {x^(1/3)}
+# }
 
